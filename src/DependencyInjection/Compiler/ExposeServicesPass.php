@@ -15,6 +15,7 @@ namespace Yannoff\Handy\DependencyInjection\Compiler;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Yannoff\Handy\Logger;
+use Yannoff\Handy\Logger\LogQueue;
 
 /**
  * Iterate over service definitions to make them all public
@@ -59,6 +60,7 @@ class ExposeServicesPass implements CompilerPassInterface
         $message = sprintf($template, $name);
 
         Logger::debug($message);
+        LogQueue::add($message);
     }
 
     /**

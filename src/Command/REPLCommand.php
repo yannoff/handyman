@@ -19,11 +19,15 @@ use Yannoff\Component\Console\Definition\Option;
 use Yannoff\Component\Console\IO\Output\Formatter;
 use Yannoff\Handy\Config;
 
+use Yannoff\Handy\Event\KernelEvents;
+use Yannoff\Handy\Logger\LogQueue;
+
 /**
  * The main REPL command class
  */
 class REPLCommand extends Command
 {
+    use EventAware;
     use KernelAware;
 
     /**
@@ -57,6 +61,22 @@ class REPLCommand extends Command
     {
         $this->dir = $dir;
         parent::__construct('REPL');
+
+        $this->addListener(KernelEvents::BOOTED, function ($container) {
+            if (!$container->has('logger')) {
+                foreach (LogQueue::all() as $message) {
+                    $this->write("MSG: $message");
+                }
+                return;
+            }
+
+            $logger = $container->get('logger');
+            foreach (LogQueue::all() as $message) {
+                $logger->debug($message);
+            }
+            LogQueue::flush();
+
+        });
     }
 
     /**

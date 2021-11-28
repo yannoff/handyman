@@ -17,6 +17,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Yannoff\Handy\DependencyInjection\Compiler\ExposeServicesPass;
 use Yannoff\Handy\Exception\InvalidKernelClassException;
+use Yannoff\Handy\Event\Dispatcher;
+use Yannoff\Handy\Event\KernelEvents;
 
 /**
  * Customized kernel factory class
@@ -87,6 +89,8 @@ class Kernel
         };
 
         $kernel->boot();
+
+        Dispatcher::trigger(KernelEvents::BOOTED, $kernel->getContainer());
 
         return $kernel;
     }
