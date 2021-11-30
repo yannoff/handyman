@@ -25,6 +25,7 @@ use Yannoff\Handy\Config;
 class REPLCommand extends Command
 {
     use KernelAware;
+    use SyntaxHighlighter;
 
     /**
      * End-of-code sequence
@@ -96,6 +97,7 @@ class REPLCommand extends Command
                     $lines[] = $line;
                 }
                 $block = implode("\n", $lines);
+                $this->writeln($this->highlight($block));
                 eval($block);
                 $this->writeln();
             } catch (\Exception $e) {
