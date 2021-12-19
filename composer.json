@@ -1,0 +1,35 @@
+{
+    "name": "yannoff/handyman",
+    "description": "A basic REPL for symfony applications",
+    "keywords": [ "symfony", "php", "repl", "tinker" ],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Yannoff\\Handy\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Yannoff",
+            "homepage": "https://github.com/yannoff"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">= 7.0",
+        "ext-readline": "*",
+        "yannoff/console": "^1.2"
+    },
+    "bin": ["bin/handyman"],
+    "require-dev": {
+        "symfony/dependency-injection": "^3.4 || ^4.4 || ^5.4 || ^6.0",
+        "symfony/dotenv": "^3.4 || ^4.4 || ^5.4 || ^6.0",
+        "symfony/filesystem": "^3.4 || ^4.4 || ^5.4 || ^6.0",
+        "symfony/http-kernel": "^3.4 || ^4.4 || ^5.4 || ^6.0"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

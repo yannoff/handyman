@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../../../autoload.php';
+
+use Yannoff\Handy\Command\REPLCommand;
+use Yannoff\Handy\Application;
+
+// Assume that this script is located in $PROJECT_DIR/vendor/yannoff/handyman/bin
+$projectDir = dirname(__DIR__, 4);
+
+$application = new Application('Symfony Handyman', '0.1.0', new REPLCommand($projectDir));
+
+$application->run();
