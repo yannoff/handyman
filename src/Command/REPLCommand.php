@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * This file is part of the yannoff/handyman library
+ *
+ * Copyright (c) Yannoff (https://github.com/yannoff)
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE file bundled with this
+ * source code.
+ */
+
 namespace Yannoff\Handy\Command;
 
 use Psr\Container\ContainerInterface;
