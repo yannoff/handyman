@@ -205,15 +205,14 @@ EOW
 
     /**
      * Override base method to make the help message consistent for single-command application
+     * (ie: don't print the command name in synopsis line)
      *
-     * @return string
+     * {@inheritdoc}
      */
-    protected function getSynopsis()
+    protected function getSynopsis($tab = Formatter::TAB)
     {
-        $nl = Formatter::LF;
-        $sep = $nl . Formatter::TAB;
-        $message = "<strong>Usage</strong>{$sep}%s [options] [--] %s{$nl}<strong>Description</strong>{$sep}%s";
+        $message = "{$tab}%s [options] [--] %s";
 
-        return sprintf($message, $this->application->getScript(), $this->definition->getArgSynopsis(), $this->help);
+        return sprintf($message, $this->application->getScript(), $this->definition->getArgSynopsis());
     }
 }
