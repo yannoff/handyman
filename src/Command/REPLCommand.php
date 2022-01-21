@@ -215,4 +215,12 @@ EOW
 
         return sprintf($message, $this->application->getScript(), $this->definition->getArgSynopsis());
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUsage($tab = Formatter::TAB, $width = 24)
+    {
+        return parent::getUsage($tab, $width);
+    }
 }
