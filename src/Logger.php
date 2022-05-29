@@ -103,7 +103,7 @@ class Logger
             return;
         }
 
-        $formatted = $this->formatter->format($message);
+        $formatted = $this->formatter->format($message, null);
 
         printf("[handyman] %s\n", $formatted);
     }
