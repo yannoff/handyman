@@ -12,8 +12,7 @@
 
 namespace Yannoff\Handy\Command;
 
-use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor;
-use PHP_Parallel_Lint\PhpConsoleHighlighter\Highlighter;
+use Yannoff\Handy\Syntax\HighLighter;
 
 /**
  *
@@ -25,56 +24,27 @@ trait SyntaxHighlighter
      */
     protected $highlighter;
 
-    /** @var array */
-    protected $theme = [
-        Highlighter::TOKEN_STRING => 'green',
-        Highlighter::TOKEN_COMMENT => 'dark_gray',
-        Highlighter::TOKEN_KEYWORD => 'magenta',
-        Highlighter::TOKEN_DEFAULT => 'default',
-        Highlighter::TOKEN_HTML => 'cyan',
-
-        Highlighter::ACTUAL_LINE_MARK  => 'red',
-        Highlighter::LINE_NUMBER => 'dark_gray',
-    ];
-
     /**
      * @return Highlighter
      */
-    protected function getHighlighter()
+    protected function getHighlighter(): HighLighter
     {
         if (null == $this->highlighter) {
-            $this->initializeHighlighter();
+            $this->highlighter = HighLighter::create();
         }
 
         return $this->highlighter;
-    }
-    /**
-     * Initialize the highlighter instance & populate the highlighter property
-     */
-    protected function initializeHighlighter()
-    {
-        $colors = new ConsoleColor();
-        $colors->setThemes($this->theme);
-        $this->highlighter = new Highlighter($colors);
     }
 
     /**
      * Return a syntax highlighted version of the PHP code
      *
-     * @fixme HTML to console tags not working
-     *
      * @param string $code The input PHP code
      *
      * @return string
      */
-    protected function highlight($code)
+    protected function highlight(string $code): string
     {
-        $pretty = $this->getHighlighter()->getWholeFile("<?php\n$code");
-
-        // Remove the php opening tag line
-        $lines = explode(PHP_EOL, $pretty);
-        array_shift($lines);
-
-        return implode("\n", $lines);
+        return $this->getHighlighter()->render($code);
     }
 }
