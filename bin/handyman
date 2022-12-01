@@ -11,6 +11,8 @@
  * source code.
  */
 
+@error_reporting(E_ERROR);
+
 require __DIR__ . '/../../../autoload.php';
 
 use Composer\InstalledVersions;
