@@ -13,7 +13,8 @@
 
 @error_reporting(E_ERROR);
 
-require __DIR__ . '/../../../autoload.php';
+$autoload = preg_match('#/vendor/#', __DIR__) ? __DIR__ . '/../../../autoload.php' : __DIR__ . '/../vendor/autoload.php';
+require $autoload;
 
 use Composer\InstalledVersions;
 use Yannoff\Handy\Command\REPLCommand;
