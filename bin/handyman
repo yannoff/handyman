@@ -18,7 +18,7 @@ require $autoload;
 
 use Composer\InstalledVersions;
 use Yannoff\Handy\Command\REPLCommand;
-use Yannoff\Handy\Application;
+use Yannoff\Component\Console\Application;
 
 $PRETTY = 'Symfony Handyman';
 $PACKAGE = 'yannoff/handyman';
