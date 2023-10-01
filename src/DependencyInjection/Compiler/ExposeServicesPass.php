@@ -94,9 +94,11 @@ class ExposeServicesPass implements CompilerPassInterface
             'session.storage.factory.service', // dependency on a non-existent service "session.storage"
             'templating.loader.cache', // dependency on a non-existent service "templating.loader.wrapped"
             'translator.logging', // dependency on a non-existent service "translator.logging.inner"
-            // Symfony v5.4.1
             'annotations.filesystem_cache_adapter', // Argument 3 of service "annotations.filesystem_cache_adapter" is abstract: Cache-Directory.
             'security.context_listener', // Argument 3 of service "security.context_listener" is abstract: Provider Key.
+            'jms_serializer.metadata.doctrine_phpcr_type_driver', // dependency on a non-existent service "doctrine_phpcr"
+            'jms_serializer.metadata.doc_block_driver', // dependency on a non-existent service "jms_serializer.metadata.doc_block_driver.inner"
+            'jms_serializer.doctrine_phpcr_object_constructor', // dependency on a non-existent service "doctrine_phpcr"
         ];
 
         return in_array($name, $blacklist);
