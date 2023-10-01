@@ -21,7 +21,7 @@
         "php": ">= 7.0",
         "ext-readline": "*",
         "composer-runtime-api": "^2.0",
-        "yannoff/console": "^1.5.0"
+        "yannoff/console": "^2.0"
     },
     "bin": ["bin/handyman"],
     "require-dev": {
