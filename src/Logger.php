@@ -13,7 +13,7 @@
 namespace Yannoff\Handy;
 
 use Yannoff\Component\Console\IO\Output\Formatter;
-use Yannoff\Component\Console\IO\Output\FormatterFactory;
+use Yannoff\Component\Console\IO\Output\PosixFormatter;
 
 /**
  * Basic logger class
@@ -71,7 +71,7 @@ class Logger
     protected static function create(): Logger
     {
         $active = Config::get('verbose', false);
-        $formatter = FormatterFactory::create();
+        $formatter = new PosixFormatter();
 
         return new static($formatter, $active);
     }
