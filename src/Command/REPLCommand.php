@@ -57,6 +57,25 @@ class REPLCommand extends Command
     {
         $this->dir = $dir;
         parent::__construct('REPL');
+<<<<<<< Updated upstream
+=======
+
+        $this->addListener(KernelEvents::BOOTED, function ($container) {
+            if (!$container->has('logger')) {
+                foreach (LogQueue::all() as $message) {
+                    $this->write("MSG: $message");
+                }
+                return;
+            }
+
+            $logger = $container->get('logger');
+            foreach (LogQueue::all() as $message) {
+                $logger->debug($message);
+            }
+            LogQueue::flush();
+
+        });
+>>>>>>> Stashed changes
     }
 
     /**
@@ -97,11 +116,11 @@ class REPLCommand extends Command
                 }
                 $block = implode("\n", $lines);
                 eval($block);
-                $this->writeln();
+                $this->write();
             } catch (\Exception $e) {
-                $this->writeln((string) $e);
+                $this->write((string) $e);
             } catch (\Error $e) {
-                $this->writeln((string) $e);
+                $this->write((string) $e);
             }
         endwhile;
     }
@@ -142,7 +161,7 @@ class REPLCommand extends Command
         $phpVersion = sprintf('%s.%s.%s', PHP_MAJOR_VERSION, PHP_MINOR_VERSION, PHP_RELEASE_VERSION);
         $symfonyVersion = self::$kernel::VERSION;
         $endingWord = self::END;
-        $this->writeln(<<<EOW
+        $this->write(<<<EOW
 
 ********************************************************************************************
                     Welcome to <strong>$name</strong> !
